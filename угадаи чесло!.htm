@@ -1,0 +1,53 @@
+<html><body>
+  <br/><hr/>
+<p align="center"><font size="16" >Guessing Number Game <i>by Adele Makaranka</i></font>
+<br/><hr/></p><p align="center">
+<input type="button" value="New Game" onclick="newGame()"></button>
+<br/><br/><br/><br/><p/>
+
+<div id="tryHigher" style="display:none"><p align="center"><font size="12">Not yet. Try bigger number</font></p></div>
+<div id="tryLower" style="display:none"><p align="center"><font size="12">Not yet. Try smaller number</font></p></div>
+<div id="yay" style="display:none"><p align="center"><font size="18" color="red">Congratulations!!! You guessed it!</font></p></div>
+<p align="center">
+Enter your guess:<input id="guess" maxlength="5"></input>
+<input type="button" value="Submit" onclick="submittedNumber(document.getElementById('guess').value);"/>
+<br/><br/>
+<i>Number should be between 1 and 20.</i>
+
+<script>
+
+let numberToGuess = Math.floor(Math.random() * 20) + 1;
+
+function newGame(){
+  numberToGuess = Math.floor(Math.random() * 20) + 1;
+  document.getElementById("tryHigher").style.display="none";
+  document.getElementById("tryLower").style.display="none";
+  document.getElementById("yay").style.display="none";
+  document.getElementById("guess").value = "";
+  document.getElementById("guess").focus();
+}
+
+function submittedNumber(numberAsked){ //alert('' + numberAsked + ' ' + numberToGuess + '-=-' + (numberToGuess < numberAsked));
+  if (numberAsked > numberToGuess){
+    document.getElementById("tryLower").style.display="inline";
+    document.getElementById("tryHigher").style.display="none";
+    document.getElementById("yay").style.display="none";
+    document.getElementById("guess").value = "";
+    document.getElementById("guess").focus();
+  }
+  else if (numberAsked < numberToGuess){
+    document.getElementById("tryHigher").style.display="inline";
+    document.getElementById("tryLower").style.display="none";
+    document.getElementById("yay").style.display="none";
+    document.getElementById("guess").value = "";
+    document.getElementById("guess").focus();
+  }
+  else if (numberAsked == numberToGuess){
+    document.getElementById("tryHigher").style.display="none";
+    document.getElementById("tryLower").style.display="none";
+    document.getElementById("yay").style.display="inline";
+  }
+}
+</script>
+
+</p></body></html>
